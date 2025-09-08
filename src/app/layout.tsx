@@ -2,10 +2,8 @@ import "~/styles/globals.css";
 
 import type { Metadata } from "next";
 import { Cairo } from "next/font/google";
-import { TRPCReactProvider } from "~/trpc/react";
-import { I18nProvider } from "./i18n";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
+import SiteChrome from "./components/SiteChrome";
+import Providers from "./providers/Providers";
 
 export const metadata: Metadata = {
   title: "سنا جو | أفضل وكالة للسفر والسياحة",
@@ -34,13 +32,9 @@ export default function RootLayout({
               "(function(){try{var s=localStorage.getItem('theme');var d=s? s==='dark' : window.matchMedia('(prefers-color-scheme: dark)').matches; if(d){document.documentElement.classList.add('dark');}}catch(e){}})();",
           }}
         />
-        <I18nProvider>
-          <TRPCReactProvider>
-            <Navbar />
-            {children}
-            <Footer />
-          </TRPCReactProvider>
-        </I18nProvider>
+        <Providers>
+          <SiteChrome>{children}</SiteChrome>
+        </Providers>
       </body>
     </html>
   );

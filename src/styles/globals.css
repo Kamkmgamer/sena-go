@@ -159,3 +159,38 @@ input:focus, textarea:focus, select:focus { @apply ring-2 ring-[var(--primary)]/
 .logo-dark { display: none; }
 .dark .logo-light { display: none; }
 .dark .logo-dark { display: block; }
+
+/* Admin Sidebar */
+.admin-sidebar {
+  background: var(--card-bg);
+  border-color: var(--card-border);
+}
+.admin-sidebar nav a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.5rem;
+  color: var(--foreground);
+  transition: background-color .2s ease, color .2s ease;
+}
+.admin-sidebar nav a:hover {
+  color: var(--primary);
+  background: color-mix(in oklab, var(--background) 85%, var(--primary));
+}
+.dark .admin-sidebar nav a:hover {
+  background: color-mix(in oklab, var(--background) 70%, var(--primary));
+}
+
+/* Individual admin links for active/hover states */
+.admin-link { color: var(--foreground); }
+.admin-link:hover { color: var(--primary); }
+.admin-link.active {
+  color: #ffffff;
+  background: var(--primary);
+}
+.dark .admin-link.active {
+  background: color-mix(in oklab, var(--primary) 55%, black);
+}
+.admin-link:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}

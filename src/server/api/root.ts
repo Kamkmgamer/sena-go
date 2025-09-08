@@ -1,5 +1,11 @@
 import { postRouter } from "~/server/api/routers/post";
+import { adminRouter } from "~/server/api/routers/admin";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
+import { cmsPostsRouter } from "~/server/api/routers/cms.posts";
+import { cmsPagesRouter } from "~/server/api/routers/cms.pages";
+import { cmsTaxonomyRouter } from "~/server/api/routers/cms.taxonomy";
+import { cmsMediaRouter } from "~/server/api/routers/cms.media";
+import { cmsSettingsRouter } from "~/server/api/routers/cms.settings";
 
 /**
  * This is the primary router for your server.
@@ -8,6 +14,14 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  */
 export const appRouter = createTRPCRouter({
   post: postRouter,
+  admin: adminRouter,
+  cms: createTRPCRouter({
+    posts: cmsPostsRouter,
+    pages: cmsPagesRouter,
+    taxonomy: cmsTaxonomyRouter,
+    media: cmsMediaRouter,
+    settings: cmsSettingsRouter,
+  }),
 });
 
 // export type definition of API

@@ -18,6 +18,8 @@ const dictionaries = {
       about: "من نحن",
       contact: "تواصل معنا",
       toggle_menu: "فتح القائمة",
+      sign_in: "تسجيل الدخول",
+      sign_up: "إنشاء حساب",
     },
     home: {
       hero_title: "استكشف العالم مع سنا جو",
@@ -95,6 +97,8 @@ const dictionaries = {
       about: "About",
       contact: "Contact",
       toggle_menu: "Toggle Menu",
+      sign_in: "Sign in",
+      sign_up: "Sign up",
     },
     home: {
       hero_title: "Explore the world with Sana Go",

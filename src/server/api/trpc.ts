@@ -9,8 +9,10 @@
 import { initTRPC } from "@trpc/server";
 import superjson from "superjson";
 import { ZodError } from "zod";
+import { auth } from "@clerk/nextjs/server";
 
 import { db } from "~/server/db";
+import { users } from "~/server/db/schema";
 
 /**
  * 1. CONTEXT
@@ -25,8 +27,21 @@ import { db } from "~/server/db";
  * @see https://trpc.io/docs/server/context
  */
 export const createTRPCContext = async (opts: { headers: Headers }) => {
+  // Use Clerk to extract auth from the current request context
+  const a = await auth();
+  // Attempt to load role from DB if logged in
+  let userRole: "admin" | "editor" | "viewer" | null = null;
+  if (a?.userId) {
+    const existing = await db.query.users.findFirst({
+      where: (t, { eq }) => eq(t.clerkUserId, a.userId!),
+    });
+    userRole = existing?.role as "admin" | "editor" | "viewer" | null;
+  }
   return {
     db,
+    auth: a,
+    userId: a?.userId ?? null,
+    userRole,
     ...opts,
   };
 };
@@ -104,3 +119,57 @@ const timingMiddleware = t.middleware(async ({ next, path }) => {
  * are logged in.
  */
 export const publicProcedure = t.procedure.use(timingMiddleware);
+
+/**
+ * Protected (authenticated) procedure
+ *
+ * Ensures the user is authenticated via Clerk and exposes `ctx.userId`.
+ */
+export const protectedProcedure = t.procedure
+  .use(timingMiddleware)
+  .use(
+    t.middleware(({ ctx, next }) => {
+      if (!ctx.userId) {
+        throw new Error("UNAUTHORIZED");
+      }
+      return next({ ctx });
+    }),
+  );
+
+/**
+ * Ensure the user exists in DB and attach role (create as viewer if missing)
+ */
+const ensureUserMiddleware = t.middleware(async ({ ctx, next }) => {
+  if (!ctx.userId) throw new Error("UNAUTHORIZED");
+  // if role not present, upsert viewer
+  if (!ctx.userRole) {
+    const existing = await ctx.db.query.users.findFirst({
+      where: (t, { eq }) => eq(t.clerkUserId, ctx.userId!),
+    });
+    if (!existing) {
+      await ctx.db.insert(users).values({ clerkUserId: ctx.userId!, role: "viewer" as "admin" | "editor" | "viewer" });
+      ctx.userRole = "viewer";
+    } else {
+      ctx.userRole = existing.role as "admin" | "editor" | "viewer";
+    }
+  }
+  return next({ ctx });
+});
+
+export const protectedWithUserProcedure = protectedProcedure.use(ensureUserMiddleware);
+
+/** Admin-only procedure */
+export const adminProcedure = protectedWithUserProcedure.use(
+  t.middleware(({ ctx, next }) => {
+    if (ctx.userRole !== "admin") throw new Error("FORBIDDEN");
+    return next({ ctx });
+  }),
+);
+
+/** Admin or Editor */
+export const editorProcedure = protectedWithUserProcedure.use(
+  t.middleware(({ ctx, next }) => {
+    if (ctx.userRole === "admin" || ctx.userRole === "editor") return next({ ctx });
+    throw new Error("FORBIDDEN");
+  }),
+);
