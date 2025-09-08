@@ -20,8 +20,8 @@ export default function LanguageSwitcher() {
         onClick={() => switchLocale("ar")}
         className={`px-3 py-1 rounded-lg text-sm font-medium transition ${
           locale === "ar"
-            ? "bg-[var(--primary)] text-white"
-            : "bg-transparent border border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white"
+            ? "bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)] lang-active"
+            : "bg-transparent border border-[var(--primary)] text-[var(--muted)] hover:bg-[var(--primary-hover)] hover:text-white"
         }`}
       >
         عربي
@@ -31,8 +31,8 @@ export default function LanguageSwitcher() {
         onClick={() => switchLocale("en")}
         className={`px-3 py-1 rounded-lg text-sm font-medium transition ${
           locale === "en"
-            ? "bg-[var(--primary)] text-white"
-            : "bg-transparent border border-[var(--primary)] text-[var(--primary)] hover:bg-[var(--primary)] hover:text-white"
+            ? "bg-[var(--primary)] text-white hover:bg-[var(--primary-hover)] lang-active"
+            : "bg-transparent border border-[var(--primary)] text-[var(--muted)] hover:bg-[var(--primary-hover)] hover:text-white"
         }`}
       >
         English

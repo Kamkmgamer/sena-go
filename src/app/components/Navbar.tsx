@@ -27,7 +27,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 w-full z-50">
+    <nav className="sticky top-0 w-full z-50" dir="ltr">
       <div className="nav-surface backdrop-blur">
         <div className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between text-[var(--foreground)]">
           {/* Logo */}
@@ -56,13 +56,13 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop links + controls */}
-          <div className="hidden md:flex items-center gap-4 text-sm font-medium">
+          <div className="hidden md:flex items-center gap-5 text-[15px] font-semibold">
             {links.map(({ href, label }) => (
               <Link
                 key={href}
                 href={href}
                 aria-current={pathname === href ? "page" : undefined}
-                className={`link-underline ${pathname === href ? "text-[var(--primary)]" : "text-[var(--foreground)] hover:text-[var(--primary)]"}`}
+                className={`link-underline ${pathname === href ? "text-[var(--primary)]" : "text-[var(--muted)] hover:text-[var(--primary)]"}`}
               >
                 {label}
               </Link>
@@ -95,7 +95,7 @@ export default function Navbar() {
             exit={{ height: 0 }}
             className="md:hidden bg-[var(--card-bg)]/95 backdrop-blur border-t border-[var(--card-border)] text-[var(--foreground)]"
           >
-            <ul className="flex flex-col py-4 px-6 gap-2 text-sm font-medium">
+            <ul className="flex flex-col py-4 px-6 gap-2 text-base font-medium">
               {links.map(({ href, label }, i) => (
                 <motion.li
                   key={href}
@@ -106,7 +106,7 @@ export default function Navbar() {
                   <Link
                     href={href}
                     onClick={() => setOpen(false)}
-                    className="block px-3 py-3 rounded-lg hover:opacity-90 link-underline text-[var(--foreground)] hover:text-[var(--primary)]"
+                    className="block px-3 py-3 rounded-lg link-underline text-[var(--muted)] hover:text-[var(--primary)]"
                   >
                     {label}
                   </Link>

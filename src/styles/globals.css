@@ -4,12 +4,13 @@
   --background: #ffffff; /* pure white for max contrast */
   --foreground: #171717;
   --primary: #003366; /* dark blue */
+  --primary-hover: color-mix(in oklab, var(--primary) 60%, white); /* lighter, still high contrast */
   --accent: #ff6b6b; /* light red */
-  --muted: #6b7280; /* gray-500 */
+  --muted: #374151; /* darker gray for better readability in light (gray-700) */
   --card-bg: #ffffff;
   --card-border: #e5e7eb; /* gray-200 */
   --nav-bg: rgba(255,255,255,0.9);
-  --nav-border: rgba(255,255,255,0.5);
+  --nav-border: rgba(0,0,0,0.08); /* subtle visible border on white */
   --surface: #f9fafb; /* page subtle sections */
   --footer-bg: var(--primary);
 }
@@ -19,6 +20,7 @@
   --background: #0b1220;
   --foreground: #e5e7eb; /* gray-200 */
   --primary: #6ea8fe; /* softer blue for dark bg */
+  --primary-hover: color-mix(in oklab, var(--primary) 92%, white); /* brighter but maintains contrast on dark */
   --accent: #ff8fa3;
   --muted: #9ca3af; /* gray-400 */
   --card-bg: #0e172a; /* slate-900-ish */
@@ -38,7 +40,7 @@ body {
 /* High-contrast defaults */
 /* Use theme variables instead of hardcoded colors so they adapt to light/dark */
 p, li { color: var(--foreground); }
-small, .text-sm { color: color-mix(in oklab, var(--foreground) 75%, var(--background)); }
+small, .text-sm { color: color-mix(in oklab, var(--foreground) 90%, var(--background)); }
 h1, h2, h3, h4, h5, h6 { color: var(--foreground); }
 
 /* Strengthen commonly used low-contrast utilities */
@@ -48,12 +50,12 @@ h1, h2, h3, h4, h5, h6 { color: var(--foreground); }
 .dark .text-gray-600 { color: #9ca3af !important; } /* gray-400 */
 .dark .text-gray-700 { color: #e5e7eb !important; } /* gray-200 */
 
-/* Links: clearer color and underline on hover for clarity */
-a { color: var(--primary); text-decoration: none; }
-a:hover { text-decoration: underline; }
+/* Links: default to foreground; use strong primary on hover for readability */
+a { color: var(--foreground); text-decoration: none; }
+a:hover { color: var(--primary); text-decoration: underline; }
 
 /* Buttons on accent/primary backgrounds already have good contrast; ensure outline visibility */
-button:focus, a:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+button:focus, a:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
 
 /* Link colors adapt automatically via var(--primary) */
 
@@ -141,10 +143,16 @@ input:focus, textarea:focus, select:focus { @apply ring-2 ring-[var(--primary)]/
 
 /* Subtle separator */
 .section-title { @apply text-2xl md:text-3xl font-bold text-[var(--primary)] text-center; }
-.section-subtitle { @apply text-center max-w-2xl mx-auto; color: var(--muted); }
+.section-subtitle { @apply text-center max-w-2xl mx-auto; color: color-mix(in oklab, var(--foreground) 75%, var(--background)); }
 
 /* Navbar helpers to adapt backgrounds if components use variables */
 .nav-surface { background-color: var(--nav-bg); border-bottom: 1px solid var(--nav-border); }
+/* Ensure nav links default to readable foreground without overriding button styles */
+.nav-surface a { color: var(--foreground); }
+.nav-surface a:hover { color: var(--primary); }
+
+/* Utility: force white text on active language button */
+.lang-active { color: #ffffff !important; }
 
 /* Logo theme toggles */
 .logo-light { display: block; }
