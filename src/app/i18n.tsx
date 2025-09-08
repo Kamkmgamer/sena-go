@@ -172,6 +172,7 @@ const I18nContext = createContext<{
   locale: DEFAULT_LOCALE,
   dir: "rtl",
   t: dictionaries[DEFAULT_LOCALE],
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   setLocale: () => {},
 });
 

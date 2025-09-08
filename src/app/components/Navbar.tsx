@@ -13,7 +13,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const { t } = useI18n();
 
-  if (!t || !t.route) {
+  if (!t?.route) {
     // Avoid rendering until i18n is initialized on client
     return null;
   }
