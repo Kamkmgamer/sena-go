@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff; /* pure white for max contrast */
+  --foreground: #171717;
+  --primary: #003366; /* dark blue */
+  --accent: #ff6b6b; /* light red */
+  --muted: #6b7280; /* gray-500 */
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb; /* gray-200 */
+  --nav-bg: rgba(255,255,255,0.9);
+  --nav-border: rgba(255,255,255,0.5);
+  --surface: #f9fafb; /* page subtle sections */
+  --footer-bg: var(--primary);
+}
+
+/* Dark theme variables (applied when html has class 'dark') */
+.dark {
+  --background: #0b1220;
+  --foreground: #e5e7eb; /* gray-200 */
+  --primary: #6ea8fe; /* softer blue for dark bg */
+  --accent: #ff8fa3;
+  --muted: #9ca3af; /* gray-400 */
+  --card-bg: #0e172a; /* slate-900-ish */
+  --card-border: #1f2937; /* gray-800 */
+  --nav-bg: rgba(15, 23, 42, 0.85); /* slate-900/85 */
+  --nav-border: rgba(148, 163, 184, 0.15); /* slate-400/15 */
+  --surface: #0b1220;
+  --footer-bg: color-mix(in oklab, var(--primary) 45%, black);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-cairo), Arial, Helvetica, sans-serif;
+}
+
+/* High-contrast defaults */
+/* Use theme variables instead of hardcoded colors so they adapt to light/dark */
+p, li { color: var(--foreground); }
+small, .text-sm { color: color-mix(in oklab, var(--foreground) 75%, var(--background)); }
+h1, h2, h3, h4, h5, h6 { color: var(--foreground); }
+
+/* Strengthen commonly used low-contrast utilities */
+/* Override Tailwind text-gray-600/700 to higher contrast */
+.text-gray-600 { color: #374151 !important; } /* ~gray-700 */
+.text-gray-700 { color: #111827 !important; } /* ~gray-900 */
+.dark .text-gray-600 { color: #9ca3af !important; } /* gray-400 */
+.dark .text-gray-700 { color: #e5e7eb !important; } /* gray-200 */
+
+/* Links: clearer color and underline on hover for clarity */
+a { color: var(--primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Buttons on accent/primary backgrounds already have good contrast; ensure outline visibility */
+button:focus, a:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Link colors adapt automatically via var(--primary) */
+
+/* Footer */
+footer, footer p, footer a, footer small, footer .text-sm {
+  color: #ffffff !important;
+}
+footer a:hover { color: #fde68a !important; } /* light amber for visibility */
+.dark footer { background-color: var(--card-bg); }
+
+/* ---------- Modern site background & helpers ---------- */
+html, body {
+  min-height: 100%;
+}
+
+body {
+  background-image:
+    radial-gradient(1200px 600px at 100% -10%, rgba(0, 51, 102, 0.06), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(255, 107, 107, 0.07), transparent 60%),
+    linear-gradient(180deg, #ffffff 0%, #fcfcff 100%);
+}
+.dark body {
+  background-image:
+    radial-gradient(1200px 600px at 100% -10%, rgba(110, 168, 254, 0.10), transparent 60%),
+    radial-gradient(900px 500px at -10% 20%, rgba(255, 143, 163, 0.10), transparent 60%),
+    linear-gradient(180deg, #0b1220 0%, #0e172a 100%);
+}
+
+/* Containers */
+.page-container { @apply px-6 lg:px-24 py-12; }
+
+/* Cards */
+.card { @apply rounded-xl shadow-sm border; background: var(--card-bg); border-color: var(--card-border); }
+.card:hover { @apply shadow-md; }
+
+/* Buttons */
+.btn { @apply inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full font-medium transition; }
+.btn-primary { @apply bg-[var(--primary)] text-white hover:brightness-110; }
+.btn-accent { @apply bg-[var(--accent)] text-white hover:brightness-110; }
+.btn-ghost { @apply backdrop-blur border hover:opacity-90; background: color-mix(in oklab, var(--background) 80%, white); border-color: var(--card-border); color: var(--foreground); }
+.dark .btn-ghost { background: color-mix(in oklab, var(--background) 70%, black); }
+
+/* Darker buttons in dark mode for better depth/contrast */
+.dark .btn-primary { background: color-mix(in oklab, var(--primary) 55%, black); }
+.dark .btn-primary:hover { filter: brightness(1.05); }
+.dark .btn-accent { background: color-mix(in oklab, var(--accent) 55%, black); }
+.dark .btn-accent:hover { filter: brightness(1.05); }
+
+/* Inputs */
+input, textarea, select {
+  @apply border rounded-lg px-3 py-2 transition outline-none;
+}
+input:focus, textarea:focus, select:focus { @apply ring-2 ring-[var(--primary)]/30 border-[var(--primary)]; }
+.dark input, .dark textarea, .dark select { background: var(--card-bg); color: var(--foreground); border-color: var(--card-border); }
+
+/* Animated underline links */
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform .25s ease;
+}
+.link-underline:hover::after { transform: scaleX(1); transform-origin: left; }
+
+/* Micro-interactions keyframes */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.float-slow { animation: float 6s ease-in-out infinite; }
+.fade-in-up { animation: fadeInUp .6s ease forwards; }
+
+/* Subtle separator */
+.section-title { @apply text-2xl md:text-3xl font-bold text-[var(--primary)] text-center; }
+.section-subtitle { @apply text-center max-w-2xl mx-auto; color: var(--muted); }
+
+/* Navbar helpers to adapt backgrounds if components use variables */
+.nav-surface { background-color: var(--nav-bg); border-bottom: 1px solid var(--nav-border); }
+
+/* Logo theme toggles */
+.logo-light { display: block; }
+.logo-dark { display: none; }
+.dark .logo-light { display: none; }
+.dark .logo-dark { display: block; }
