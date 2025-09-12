@@ -37,7 +37,7 @@ export default function Navbar() {
             <motion.div initial={{ rotate: -8, scale: 0.9 }} animate={{ rotate: 0, scale: 1 }} transition={{ type: "spring", stiffness: 200, damping: 15 }}>
               {/* Light mode logo */}
               <Image
-                src="/logo_light.png"
+                src="https://ik.imagekit.io/gtnmxyt2d/Sala%20GO/logo_light.png"
                 alt={t.common.brand}
                 width={36}
                 height={36}
@@ -46,7 +46,7 @@ export default function Navbar() {
               />
               {/* Dark mode logo */}
               <Image
-                src="/logo_dark.png"
+                src="https://ik.imagekit.io/gtnmxyt2d/Sala%20GO/logo_dark.png"
                 alt={t.common.brand}
                 width={36}
                 height={36}

@@ -21,11 +21,13 @@ const isPublicRoute = createRouteMatcher([
 ]);
 
 export default clerkMiddleware(async (auth, request) => {
-  if (!isPublicRoute(request)) {
-    const { userId, redirectToSignIn } = await auth();
-    if (!userId) {
-      return redirectToSignIn({ returnBackUrl: request.url });
-    }
+  // Allow public routes to pass through
+  if (isPublicRoute(request)) return;
+
+  // For protected routes, redirect unauthenticated users to sign in
+  const { userId, redirectToSignIn } = await auth();
+  if (!userId) {
+    return redirectToSignIn({ returnBackUrl: request.url });
   }
 });
 
@@ -34,6 +36,7 @@ export const config = {
     // Skip Next.js internals and static files, handle all other routes
     "/((?!_next/|.*\\..*).*)",
     "/",
+    "/(api|trpc)(.*)",
   ],
 };
 
