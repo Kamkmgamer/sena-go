@@ -13,6 +13,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const { t } = useI18n();
+  const { isSignedIn, isLoaded } = useUser();
 
   if (!t?.route) {
     // Avoid rendering until i18n is initialized on client
@@ -70,27 +71,22 @@ export default function Navbar() {
             ))}
             <ThemeToggle />
             <LanguageSwitcher />
-            {(() => {
-              const { isSignedIn, isLoaded } = useUser();
-              if (!isLoaded) return null; // Or a loading spinner
-              if (isSignedIn) {
-                return <UserButton appearance={{ elements: { userButtonAvatarBox: "w-8 h-8" } }} afterSignOutUrl="/" />;
-              }
-              return (
-                <>
-                  <SignInButton mode="modal">
-                    <button className="px-3 py-2 rounded-md bg-[var(--primary)] text-white hover:opacity-90">
-                      {t.nav?.sign_in ?? "Sign in"}
-                    </button>
-                  </SignInButton>
-                  <SignUpButton mode="modal">
-                    <button className="px-3 py-2 rounded-md border border-[var(--card-border)] hover:bg-[var(--card-bg)]">
-                      {t.nav?.sign_up ?? "Sign up"}
-                    </button>
-                  </SignUpButton>
-                </>
-              );
-            })()}
+            {!isLoaded ? null : isSignedIn ? (
+              <UserButton appearance={{ elements: { userButtonAvatarBox: "w-8 h-8" } }} afterSignOutUrl="/" />
+            ) : (
+              <>
+                <SignInButton mode="modal">
+                  <button className="px-3 py-2 rounded-md bg-[var(--primary)] text-white hover:opacity-90">
+                    {t.nav?.sign_in ?? "Sign in"}
+                  </button>
+                </SignInButton>
+                <SignUpButton mode="modal">
+                  <button className="px-3 py-2 rounded-md border border-[var(--card-border)] hover:bg-[var(--card-bg)]">
+                    {t.nav?.sign_up ?? "Sign up"}
+                  </button>
+                </SignUpButton>
+              </>
+            )}
           </div>
 
           {/* Mobile hamburger */}
@@ -137,27 +133,22 @@ export default function Navbar() {
               <li className="pt-2 flex items-center gap-3">
                 <ThemeToggle />
                 <LanguageSwitcher />
-                {(() => {
-                  const { isSignedIn, isLoaded } = useUser();
-                  if (!isLoaded) return null; // Or a loading spinner
-                  if (isSignedIn) {
-                    return <UserButton appearance={{ elements: { userButtonAvatarBox: "w-7 h-7" } }} afterSignOutUrl="/" />;
-                  }
-                  return (
-                    <>
-                      <SignInButton mode="modal">
-                        <button className="px-3 py-2 rounded-md bg-[var(--primary)] text-white hover:opacity-90">
-                          {t.nav?.sign_in ?? "Sign in"}
-                        </button>
-                      </SignInButton>
-                      <SignUpButton mode="modal">
-                        <button className="px-3 py-2 rounded-md border border-[var(--card-border)] hover:bg-[var(--card-bg)]">
-                          {t.nav?.sign_up ?? "Sign up"}
-                        </button>
-                      </SignUpButton>
-                    </>
-                  );
-                })()}
+                {!isLoaded ? null : isSignedIn ? (
+                  <UserButton appearance={{ elements: { userButtonAvatarBox: "w-7 h-7" } }} afterSignOutUrl="/" />
+                ) : (
+                  <>
+                    <SignInButton mode="modal">
+                      <button className="px-3 py-2 rounded-md bg-[var(--primary)] text-white hover:opacity-90">
+                        {t.nav?.sign_in ?? "Sign in"}
+                      </button>
+                    </SignInButton>
+                    <SignUpButton mode="modal">
+                      <button className="px-3 py-2 rounded-md border border-[var(--card-border)] hover:bg-[var(--card-bg)]">
+                        {t.nav?.sign_up ?? "Sign up"}
+                      </button>
+                    </SignUpButton>
+                  </>
+                )}
               </li>
             </ul>
           </motion.div>

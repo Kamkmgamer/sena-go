@@ -10,6 +10,9 @@ const isPublicRoute = createRouteMatcher([
   "/sign-in(.*)",
   "/sign-up(.*)",
   "/favicon.ico",
+  // Public assets used in nav (ensure visible when signed out)
+  "/logo_light.png",
+  "/logo_dark.png",
   // IMPORTANT: tRPC runs auth() in context, but Clerk still needs middleware present.
   // Mark tRPC as public so unauthenticated calls to public procedures don't redirect.
   "/api/trpc(.*)",
@@ -29,7 +32,7 @@ export default clerkMiddleware(async (auth, request) => {
 export const config = {
   matcher: [
     // Skip Next.js internals and static files, handle all other routes
-    "/((?!.+\\.[\\w]+$|_next).*) ",
+    "/((?!_next/|.*\\..*).*)",
     "/",
   ],
 };

@@ -6,8 +6,8 @@ import SiteChrome from "./components/SiteChrome";
 import Providers from "./providers/Providers";
 
 export const metadata: Metadata = {
-  title: "سنا جو | أفضل وكالة للسفر والسياحة",
-  description: "اكتشف أجمل الوجهات السياحية واحجز رحلتك مع سنا جو بسهولة وأمان.",
+  title: "سلا جو | أفضل وكالة للسفر والسياحة",
+  description: "اكتشف أجمل الوجهات السياحية واحجز رحلتك مع سلا جو بسهولة وأمان.",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
 
