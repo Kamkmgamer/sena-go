@@ -20,7 +20,7 @@ export default function AboutPageClient() {
         <div className="card overflow-hidden transition-transform hover:-translate-y-1">
           <Image
             src="https://placehold.co/800x500/png?text=Sana+Go"
-            alt="SalaGo"
+            alt="Sala Go"
             width={800}
             height={500}
             className="w-full h-64 object-cover"
