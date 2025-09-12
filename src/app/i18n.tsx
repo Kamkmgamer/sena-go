@@ -86,7 +86,7 @@ const dictionaries = {
   },
   en: {
     common: {
-      brand: "Sana Go",
+      brand: "SalaGo",
       discover: "Explore Destinations",
       book_now: "Book Now",
     },
@@ -101,14 +101,14 @@ const dictionaries = {
       sign_up: "Sign up",
     },
     home: {
-      hero_title: "Explore the world with Sana Go",
+      hero_title: "Explore the world with SalaGo",
       hero_sub: "We bring you the best deals and trips to the most popular destinations around the world, with comfort and professionalism.",
       featured: "Featured Destinations",
       featured_sub: "Handpicked ideas for your next trip.",
       services: "Our Services",
       testimonials: "Traveler Reviews",
       sample_destinations: ["Paris", "Maldives", "Istanbul"],
-      review_text: "\"My trip with Sana Go was amazing – great organization and excellent service!\"",
+      review_text: "\"My trip with SalaGo was amazing – great organization and excellent service!\"",
       reviewer: "Happy Traveler",
       services_list: [
         { title: "Flight Bookings", icon: "✈️" },
@@ -123,7 +123,7 @@ const dictionaries = {
       title: "About Us",
       subtitle: "An Arab travel agency providing innovative travel solutions and unforgettable experiences.",
       story_title: "Our Story",
-      story_text: "Sana Go was founded by Reem with great passion for travel and serving Arab travelers. Our journey began with the goal of simplifying travel planning and offering the best deals on flights, hotels and tours.",
+      story_text: "SalaGo was founded by Reem with great passion for travel and serving Arab travelers. Our journey began with the goal of simplifying travel planning and offering the best deals on flights, hotels and tours.",
       mission_title: "Our Mission",
       mission_text: "Provide reliable and comfortable travel services for every Arab traveler.",
       vision_title: "Our Vision",
