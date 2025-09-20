@@ -7,7 +7,7 @@ export type Locale = "ar" | "en";
 const dictionaries = {
   ar: {
     common: {
-      brand: "سلا جو",
+      brand: "سنا جو",
       discover: "اكتشف الوجهات",
       book_now: "احجز رحلتك الآن",
     },
@@ -22,14 +22,14 @@ const dictionaries = {
       sign_up: "إنشاء حساب",
     },
     home: {
-      hero_title: "استكشف العالم مع سلا جو",
+      hero_title: "استكشف العالم مع سنا جو",
       hero_sub: "نوفر لك أفضل العروض والرحلات إلى أشهر الوجهات السياحية حول العالم بكل احترافية وراحة.",
       featured: "وجهات مميزة",
       featured_sub: "مختارات تلهم رحلتك القادمة.",
       services: "خدماتنا",
       testimonials: "آراء المسافرين",
       sample_destinations: ["باريس", "المالديف", "إسطنبول"],
-      review_text: "\"رحلتي مع سلا جو كانت مذهلة، التنظيم كان رائعاً والخدمة ممتازة!\"",
+      review_text: "\"رحلتي مع سنا جو كانت مذهلة، التنظيم كان رائعاً والخدمة ممتازة!\"",
       reviewer: "مسافر سعيد",
       services_list: [
         { title: "حجوزات الطيران", icon: "✈️" },
@@ -44,7 +44,7 @@ const dictionaries = {
       title: "من نحن",
       subtitle: "وكالة سفر عربية تقدم حلول سفر مبتكرة وتجارب لا تُنسى.",
       story_title: "قصتنا",
-      story_text: "تم تأسيس سلا جو بواسطة ريم بحماس كبير للسفر وخدمة المسافرين العرب. بدأت رحلتنا بهدف تبسيط تخطيط السفر وتقديم أفضل العروض على الرحلات الجوية والفنادق والجولات.",
+      story_text: "تم تأسيس سنا جو بواسطة ريم بحماس كبير للسفر وخدمة المسافرين العرب. بدأت رحلتنا بهدف تبسيط تخطيط السفر وتقديم أفضل العروض على الرحلات الجوية والفنادق والجولات.",
       mission_title: "رسالتنا",
       mission_text: "تقديم خدمات سفر موثوقة ومريحة لكل مسافر عربي.",
       vision_title: "رؤيتنا",
@@ -86,7 +86,7 @@ const dictionaries = {
   },
   en: {
     common: {
-      brand: "Sala Go",
+      brand: "sana Go",
       discover: "Explore Destinations",
       book_now: "Book Now",
     },
@@ -101,14 +101,14 @@ const dictionaries = {
       sign_up: "Sign up",
     },
     home: {
-      hero_title: "Explore the world with Sala Go",
+      hero_title: "Explore the world with sana Go",
       hero_sub: "We bring you the best deals and trips to the most popular destinations around the world, with comfort and professionalism.",
       featured: "Featured Destinations",
       featured_sub: "Handpicked ideas for your next trip.",
       services: "Our Services",
       testimonials: "Traveler Reviews",
       sample_destinations: ["Paris", "Maldives", "Istanbul"],
-      review_text: "\"My trip with Sala Go was amazing – great organization and excellent service!\"",
+      review_text: "\"My trip with sana Go was amazing – great organization and excellent service!\"",
       reviewer: "Happy Traveler",
       services_list: [
         { title: "Flight Bookings", icon: "✈️" },
@@ -123,7 +123,7 @@ const dictionaries = {
       title: "About Us",
       subtitle: "An Arab travel agency providing innovative travel solutions and unforgettable experiences.",
       story_title: "Our Story",
-      story_text: "Sala Go was founded by Reem with great passion for travel and serving Arab travelers. Our journey began with the goal of simplifying travel planning and offering the best deals on flights, hotels and tours.",
+      story_text: "sana Go was founded by Reem with great passion for travel and serving Arab travelers. Our journey began with the goal of simplifying travel planning and offering the best deals on flights, hotels and tours.",
       mission_title: "Our Mission",
       mission_text: "Provide reliable and comfortable travel services for every Arab traveler.",
       vision_title: "Our Vision",

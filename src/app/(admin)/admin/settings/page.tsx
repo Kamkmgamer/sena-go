@@ -11,7 +11,7 @@ export default function AdminSettingsPage() {
           <div className="text-sm text-gray-600">إعدادات الموقع</div>
           <div className="grid gap-3">
             <label className="text-sm">عنوان الموقع</label>
-            <input placeholder="سلا جو" />
+            <input placeholder="سنا جو" />
           </div>
           <div className="grid gap-3">
             <label className="text-sm">وصف قصير</label>
